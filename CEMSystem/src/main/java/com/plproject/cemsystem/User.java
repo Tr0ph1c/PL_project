@@ -1,5 +1,5 @@
 package com.plproject.cemsystem;
-import java.util.concurrent.atomic.AtomicInteger;
+
 
 public class User {
     
@@ -7,12 +7,14 @@ public class User {
     private String name;
     private int age;
     private String password;
-        
-    private static final AtomicInteger staticid = new AtomicInteger(1000);
+    private static int ID = 1000;
+    private int id;
+
 
     public User(String name, int age, String password){
-             
-        staticid.incrementAndGet();
+        
+        ID++;
+        id=ID;
         this.name = name;
         this.age = age;
         this.password = password;
@@ -45,9 +47,12 @@ public class User {
     
     public void login() {
         
+        System.out.println("LOGIN");
+        
     }
 
     public void logout() {
         
+        System.out.println("LOGOUT");
     } 
 }
