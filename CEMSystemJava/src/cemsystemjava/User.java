@@ -1,4 +1,4 @@
-package com.plproject.cemsystem;
+package cemsystemjava;
 
 public class User {
     
