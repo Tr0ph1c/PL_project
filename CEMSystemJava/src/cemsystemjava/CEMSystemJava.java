@@ -1,7 +1,7 @@
 package cemsystemjava;
 
-//import MSSQLHelper.Java2SQLConnection;
-import java.sql.*;
+import MySQLConnection.J2SQL;
+import java.sql.Connection;
 
 public class CEMSystemJava {
 
@@ -9,10 +9,7 @@ public class CEMSystemJava {
         LoginWindow login = new LoginWindow();
         login.setVisible(true);
         
-        try {
-            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/cemsystem?zeroDateTimeBehavior=CONVERT_TO_NULL", "root", "12345");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
+        J2SQL.Connect();
+        Connection con = J2SQL.con;
     }
 }
