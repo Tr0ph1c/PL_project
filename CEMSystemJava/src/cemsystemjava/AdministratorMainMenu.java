@@ -1,11 +1,11 @@
 package cemsystemjava;
 
-public class StudentMainMenu extends javax.swing.JFrame {
+public class AdministratorMainMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form LecturerMainMenu
      */
-    public StudentMainMenu() {
+    public AdministratorMainMenu() {
         initComponents();
     }
 
@@ -47,7 +47,6 @@ public class StudentMainMenu extends javax.swing.JFrame {
 
         UI_taketest.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         UI_taketest.setText("TAKE TEST");
-        UI_taketest.setActionCommand("TAKE TEST");
 
         UI_checkreports.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         UI_checkreports.setText("CHECK MARKS");
@@ -151,21 +150,23 @@ public class StudentMainMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StudentMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StudentMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StudentMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StudentMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministratorMainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StudentMainMenu().setVisible(true);
+                new AdministratorMainMenu().setVisible(true);
             }
         });
     }
