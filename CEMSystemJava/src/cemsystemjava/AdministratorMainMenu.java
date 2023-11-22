@@ -21,11 +21,10 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         UI_username = new javax.swing.JLabel();
         UI_logout = new javax.swing.JButton();
-        UI_courses = new javax.swing.JLabel();
         courselabel = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        UI_taketest = new javax.swing.JButton();
-        UI_checkreports = new javax.swing.JButton();
+        UI_lecturers = new javax.swing.JButton();
+        UI_students = new javax.swing.JButton();
         UI_reports = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,26 +37,29 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
 
         UI_logout.setText("Log Out");
 
-        UI_courses.setText("PLACEHOLDER");
-
         courselabel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        courselabel.setText("Registered Courses: ");
+        courselabel.setText("! ADMINISTRATOR ACCOUNT !");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.lightGray, java.awt.Color.lightGray));
 
-        UI_taketest.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        UI_taketest.setText("TAKE TEST");
-
-        UI_checkreports.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        UI_checkreports.setText("CHECK MARKS");
-        UI_checkreports.addActionListener(new java.awt.event.ActionListener() {
+        UI_lecturers.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        UI_lecturers.setText("LECTURERS");
+        UI_lecturers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UI_checkreportsActionPerformed(evt);
+                UI_lecturersActionPerformed(evt);
+            }
+        });
+
+        UI_students.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        UI_students.setText("STUDENTS");
+        UI_students.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UI_studentsActionPerformed(evt);
             }
         });
 
         UI_reports.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        UI_reports.setText("REPORTS");
+        UI_reports.setText("COURSES");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -65,9 +67,9 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(UI_taketest, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UI_lecturers, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
-                .addComponent(UI_checkreports, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(UI_students, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UI_reports, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -77,8 +79,8 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(UI_taketest, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                    .addComponent(UI_checkreports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(UI_lecturers, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
+                    .addComponent(UI_students, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(UI_reports, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -91,7 +93,6 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(UI_courses, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(UI_username, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -114,9 +115,7 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
                     .addComponent(UI_logout))
                 .addGap(12, 12, 12)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(UI_courses, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(51, 51, 51)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,9 +128,13 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void UI_checkreportsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UI_checkreportsActionPerformed
+    private void UI_studentsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UI_studentsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_UI_checkreportsActionPerformed
+    }//GEN-LAST:event_UI_studentsActionPerformed
+
+    private void UI_lecturersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UI_lecturersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UI_lecturersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,11 +175,10 @@ public class AdministratorMainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton UI_checkreports;
-    private javax.swing.JLabel UI_courses;
+    private javax.swing.JButton UI_lecturers;
     private javax.swing.JButton UI_logout;
     private javax.swing.JButton UI_reports;
-    private javax.swing.JButton UI_taketest;
+    private javax.swing.JButton UI_students;
     private javax.swing.JLabel UI_username;
     private javax.swing.JLabel courselabel;
     private javax.swing.JButton jButton1;

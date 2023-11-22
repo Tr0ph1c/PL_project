@@ -30,7 +30,6 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jPanel1" max="32767" attributes="0"/>
-                  <Component id="UI_courses" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="UI_username" min="-2" pref="550" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -61,9 +60,7 @@
               </Group>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="UI_courses" min="-2" pref="27" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
               <Component id="jPanel1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -96,17 +93,12 @@
         <Property name="text" type="java.lang.String" value="Log Out"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="UI_courses">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PLACEHOLDER"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="courselabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Registered Courses: "/>
+        <Property name="text" type="java.lang.String" value="! ADMINISTRATOR ACCOUNT !"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="jPanel1">
@@ -126,9 +118,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="UI_taketest" min="-2" pref="195" max="-2" attributes="0"/>
+                  <Component id="UI_lecturers" min="-2" pref="195" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                  <Component id="UI_checkreports" min="-2" pref="195" max="-2" attributes="0"/>
+                  <Component id="UI_students" min="-2" pref="195" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="UI_reports" min="-2" pref="195" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -140,8 +132,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="UI_taketest" alignment="1" pref="195" max="32767" attributes="0"/>
-                      <Component id="UI_checkreports" alignment="1" max="32767" attributes="0"/>
+                      <Component id="UI_lecturers" alignment="1" pref="195" max="32767" attributes="0"/>
+                      <Component id="UI_students" alignment="1" max="32767" attributes="0"/>
                       <Component id="UI_reports" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -150,23 +142,26 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="UI_taketest">
+        <Component class="javax.swing.JButton" name="UI_lecturers">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="TAKE TEST"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="UI_checkreports">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="24" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="CHECK MARKS"/>
+            <Property name="text" type="java.lang.String" value="LECTURERS"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UI_checkreportsActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UI_lecturersActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="UI_students">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="24" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="STUDENTS"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UI_studentsActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="UI_reports">
@@ -174,7 +169,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="REPORTS"/>
+            <Property name="text" type="java.lang.String" value="COURSES"/>
           </Properties>
         </Component>
       </SubComponents>
