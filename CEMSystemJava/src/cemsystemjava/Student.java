@@ -1,4 +1,3 @@
-
 package cemsystemjava;
 
 /**
@@ -14,10 +13,11 @@ public class Student extends User{
         super(name, age, password);
     }
     
-    void TakeTest(int test_id){
+    public void TakeTest(int test_id){
         System.out.println("Take Test");
     }
-    void CheckReports()
+    
+    public void CheckReports()
     {
         System.out.println("Check Reports");
     }
