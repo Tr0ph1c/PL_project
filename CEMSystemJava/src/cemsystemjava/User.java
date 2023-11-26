@@ -1,9 +1,9 @@
 package cemsystemjava;
 
 public class User {
-    
+
     private static int ID = 1000;
-    
+
     private int id;
     private String name;
     private int age;
@@ -16,7 +16,7 @@ public class User {
         this.age = age;
         this.password = password;
     }
-        
+
 
     public String getName() {
         return name;
@@ -41,4 +41,11 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+
+//    public static void clearScreen() {
+//        Runtime.getRuntime().exec("cls");
+//    }
+
+
 }
