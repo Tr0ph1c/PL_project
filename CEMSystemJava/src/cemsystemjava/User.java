@@ -40,13 +40,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    } 
-    
-    public void login() {
-        System.out.println("LOGIN");
     }
-
-    public void logout() {
-        System.out.println("LOGOUT");
-    } 
 }
