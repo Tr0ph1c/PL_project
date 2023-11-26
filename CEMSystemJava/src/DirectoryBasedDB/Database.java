@@ -33,8 +33,15 @@ public class Database {
     }
     
     public static boolean writeRecord (String path, String RecordID, String[] lines) {
-          if(recordExists(path,RecordID)) {overwriteRecord(path,RecordID,lines);return true;}
+          if(!recordExists(path,RecordID)) {overwriteRecord(path,RecordID,lines);return true;}
           else {return false;}
+    }
+
+    public static boolean delRecord (String path , String id)
+    {
+        File record = new File(path+id);
+        return record.delete();
+
     }
 
     public static boolean removeRecord (String path, String RecordID) {
