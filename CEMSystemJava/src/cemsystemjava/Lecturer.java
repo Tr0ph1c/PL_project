@@ -7,7 +7,7 @@ package cemsystemjava;
  * 
  */
 public class Lecturer extends User {
-    private String[] Courses ;
+    private String Course;
     
     public Lecturer(String name, int age, String password) {
         super(name, age, password);
