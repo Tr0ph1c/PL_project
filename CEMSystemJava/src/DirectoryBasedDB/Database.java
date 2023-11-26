@@ -13,11 +13,11 @@ public class Database {
     public static final String TABLE_STUDS = DB + "students/";
     
     public static boolean recordExists (String path, String RecordID) {
-        return new File(path + RecordID + ".txt").exists();
+        return new File(path + RecordID).exists();
     }
     
     public static void overwriteRecord (String path, String RecordID, String[] lines) {
-        File file = new File(path + RecordID + ".txt");
+        File file = new File(path + RecordID);
         
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(file));
@@ -33,6 +33,6 @@ public class Database {
     }
     
     public static boolean removeRecord (String path, String RecordID) {
-        return new File(path + RecordID + ".txt").delete();
+        return new File(path + RecordID).delete();
     }
 }
