@@ -31,7 +31,26 @@ public class Database {
             Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    public static boolean writeRecord (String path, String RecordID, String[] lines) {
+        if (recordExists(path , RecordID)) return false;
+
+        File file = new File(path + RecordID);
+
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+
+            for (int i = 0; i < lines.length; i++) {
+                writer.append(lines[i] + "\n");
+            }
+
+            writer.close();
+            return true;
+        } catch (IOException ex) {
+            Logger.getLogger(Database.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
     public static boolean removeRecord (String path, String RecordID) {
         return new File(path + RecordID).delete();
     }
