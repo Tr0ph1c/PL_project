@@ -11,10 +11,11 @@ import java.util.Scanner;
  * 
  */
 public class Lecturer extends User {
-    private String Course;
+    private String course;
     
-    public Lecturer(String name, int age, String password) {
+    public Lecturer(String name, int age, String password, String course) {
         super(name, age, password);
+        this.course = course;
     }
 
     public boolean AddTest(){
