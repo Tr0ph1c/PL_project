@@ -1,6 +1,5 @@
 package cemsystemjava;
 
-import MySQLConnection.J2SQL;
 import java.sql.Connection;
 
 enum UserType {
@@ -11,7 +10,6 @@ enum UserType {
 
 public class UserManagement {
     public static User currentUser;
-    Connection con = J2SQL.con;
     
     public static boolean Login (int id, String password) {
         //Check if ID and password match from database return false if not
