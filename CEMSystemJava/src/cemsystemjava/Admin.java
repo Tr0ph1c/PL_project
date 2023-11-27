@@ -14,45 +14,38 @@ public class Admin extends User {
         super(name, age, password);
     }
     
-    public void AddStudent(int student_id ,String password , String[] courses)
+    public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)
     {
-        String[] line={password};
+        String[] line= {sName, ""+sAge, password};
         for(int i=0;i<courses.length;i++){
-            line[0]+=" "+courses[i];
-            }
+            line[3] += courses[i] + " ";
+        }
         Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
-        
     }
     
     public void AddLecturer(int lecturer_id ,String password , String[] courses)
     {
         System.out.println("Add Lecturer");
-
     }
     
-    public void DeleteStudent(int ID)
+    public boolean DeleteStudent(int ID)
     {
-        
-        Database.removeRecord(Database.TABLE_STUDS,""+ID);
-
+        return Database.removeRecord(Database.TABLE_STUDS,""+ID);
     }
     
     public void DeleteLecturer(int ID)
     {
         System.out.println("Delete Lecturer");
-
     }
     
     public void AssignCourseToStudent(String coruse, int stdudent_id)
     {
         System.out.println("Assign Course To Student");
-
     }
     
     public void AssignCourseToLecturer(String course, int lecturer_id)
     {
         System.out.println("Assign Course To Lecturer");
-
     }
 }
 
