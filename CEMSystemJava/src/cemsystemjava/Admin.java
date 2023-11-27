@@ -1,5 +1,7 @@
 package cemsystemjava;
 
+import DirectoryBasedDB.Database;
+
 /**
  *
  * @author ahmniab
@@ -14,7 +16,11 @@ public class Admin extends User {
     
     public void AddStudent(int student_id ,String password , String[] courses)
     {
-        System.out.println("Add student");
+        String[] line={password};
+        for(int i=0;i<courses.length;i++){
+            line[0]+=" "+courses[i];
+            }
+        Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
         
     }
     
@@ -26,7 +32,8 @@ public class Admin extends User {
     
     public void DeleteStudent(int ID)
     {
-        System.out.println("Delete student");
+        
+        Database.removeRecord(Database.TABLE_STUDS,""+ID);
 
     }
     
