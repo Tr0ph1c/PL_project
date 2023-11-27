@@ -1,5 +1,6 @@
 package cemsystemjava;
 
+import DirectoryBasedDB.Database;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,33 +16,38 @@ public class UserManagement {
     
     public static int Login (int id, String password, UserType type)
     {
-        String fileName = id + ".txt"; // add this line to get the file name based on the ID
+        String dir = "";
+        String ID = Integer.toString(id);
+        
+        switch (type) {
+            case STUDENT:
+                dir = Database.TABLE_STUDS;
+                break;
+            case LECTURER:
+                dir = Database.TABLE_LECTS;
+                break;
+            case ADMINISTRATOR:
+                dir = Database.TABLE_ADMIN;
+                break;
+        }
+        
         try {
-            BufferedReader reader = new BufferedReader(new FileReader(fileName));
-            String line;
-            boolean found = false;
+            if (!Database.recordExists(dir, ID)) return 2;
             
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts[0].equals(type.toString()) && Integer.parseInt(parts[1]) == id) {
-                    found = true;
-                    if (parts[2].equals(password)) {
-                        System.out.println("logging in");
-                        return 0;
-                    } else {
-                        System.out.println("wrong password");
-                        return 1;
-                    }
-                }
-            }
-            if (!found) {
-                System.out.println("user not found");
-                return 2;
+            BufferedReader reader = new BufferedReader(new FileReader(dir+ID));
+            String line = "";
+            
+            for (int i = 0; i <= 2; i++, line = reader.readLine());
+            
+            if (line.equals(password)) {
+                return 0;
+            } else {
+                return 1;
             }
         } catch (IOException e) {
             e.printStackTrace();
+            return 2;
         }
-        return -1;
     }
 }
 
