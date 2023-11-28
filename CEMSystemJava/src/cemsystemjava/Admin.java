@@ -55,9 +55,34 @@ public class Admin extends User {
         System.out.println("Delete Lecturer");
     }
     
-    public void AssignCourseToStudent(String coruse, int stdudent_id)
+    /*
+    *@author ahmniab
+    * Function: AssignCourseToStudent
+    * pre :
+    *   -The file is exist 
+    *   -The 4th line is exist
+    * Parameters:
+    *   - coruse      : A string representing the course.
+    *   - stdudent_id : An int representing the Target student ز
+    * Returns:
+    *   True if assigend Successfully .
+    *   False if the course already exists.
+    *
+    */
+    public static boolean AssignCourseToStudent(String course, int student_id)
     {
-        System.out.println("Assign Course To Student");
+        String[] lines =  Database.getlines(Database.TABLE_STUDS + student_id);
+        String[] fourth = lines[3].split(";");
+        
+        for(String c : fourth)
+            if(c.equals(course)) return false;
+        
+        lines[3] += ";" + course ;
+        Database.overwriteRecord(Database.TABLE_STUDS ,""+ student_id, lines);
+        return true ;
+        
+
+        
     }
     
     public void AssignCourseToLecturer(String course, int lecturer_id)

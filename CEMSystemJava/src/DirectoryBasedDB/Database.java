@@ -18,10 +18,13 @@ public class Database {
     public static boolean recordExists (String path, String RecordID) {
         return new File(path + RecordID).exists();
     }
+    
     /*
-    *@ahmniab
+    *@author ahmniab
     * Function: getLines
     * Description: Retrieves lines from a file specified by the given path.
+    * pre :
+    *   -The file is exist 
     * Parameters:
     *   - path: A string representing the file path.
     * Returns:
@@ -30,16 +33,16 @@ public class Database {
     public static String[] getlines(String path ){
         String[] linesArray  = new String[0];
         try {
-            // Read all lines from the file and store them in a List<String>
+            
             List<String> lines = Files.readAllLines(Paths.get(path));
 
             linesArray = lines.toArray(new String[0]);
             return linesArray ;
 
         } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately
+            e.printStackTrace(); 
         }
-//        return linesArray;
+        return linesArray;
     }
     
     public static void overwriteRecord (String path, String RecordID, String[] lines) {
