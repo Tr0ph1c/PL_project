@@ -18,12 +18,12 @@ public class Admin extends User {
     {
         String[] line= {sName, ""+sAge, password};
         for(int i=0;i<courses.length;i++){
-            line[3] += courses[i] + " ";
+            line[3] += courses[i] + ";";
         }
         Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
     }
     
-    public void AddLecturer(int lecturer_id ,String password , String[] courses)
+    public void AddLecturer(int lecturer_id, String LName, int LAge, String password, String[] courses)
     {
         System.out.println("Add Lecturer");
     }
