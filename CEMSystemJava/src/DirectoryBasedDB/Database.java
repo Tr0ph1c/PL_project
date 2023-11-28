@@ -3,6 +3,9 @@ package DirectoryBasedDB;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class Database {
     public static final String DB = "../database/";
@@ -14,6 +17,29 @@ public class Database {
     
     public static boolean recordExists (String path, String RecordID) {
         return new File(path + RecordID).exists();
+    }
+    /*
+    *@ahmniab
+    * Function: getLines
+    * Description: Retrieves lines from a file specified by the given path.
+    * Parameters:
+    *   - path: A string representing the file path.
+    * Returns:
+    *   An array containing lines read from the specified file.
+    */
+    public static String[] getlines(String path ){
+        String[] linesArray  = new String[0];
+        try {
+            // Read all lines from the file and store them in a List<String>
+            List<String> lines = Files.readAllLines(Paths.get(path));
+
+            linesArray = lines.toArray(new String[0]);
+            return linesArray ;
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+//        return linesArray;
     }
     
     public static void overwriteRecord (String path, String RecordID, String[] lines) {
