@@ -2,7 +2,9 @@ package cemsystemjava;
 
 import DirectoryBasedDB.Database;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -50,48 +52,57 @@ public class UserManagement {
             return 2;
         }
     }
-
-    public static void ChangeInfo() {
+        public void ChangeInfo() {
         Scanner scanner = new Scanner(System.in);
-        boolean continueLoop = true;
-        
-        while (continueLoop) {
-            System.out.println("Do you want to change name, age, password, or exit?");
-            System.out.println("1. Name");
-            System.out.println("2. Age");
-            System.out.println("3. Password");
-            System.out.println("4. Exit");
-            
-            int choice = scanner.nextInt();
-            
-            switch (choice) {
-                case 1:
-                    System.out.println("Enter new name:");
-                    String newName = scanner.next();
-                    currentUser.setName(newName);
-                    break;
-                case 2:
-                    System.out.println("Enter new age:");
-                    int newAge = scanner.nextInt();
-                    currentUser.setAge(newAge);
-                    break;
-                case 3:
-                    System.out.println("Enter new password:");
-                    String newPassword = scanner.next();
-                    currentUser.setPassword(newPassword);
-                    break;
-                case 4:
-                    continueLoop = false;
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please try again.");
-                    break;
-            }
+        System.out.println("Do you want to change your name, age, password, or exit? Enter the corresponding number.");
+        System.out.println("1. Change Name");
+        System.out.println("2. Change Age");
+        System.out.println("3. Change Password");
+        System.out.println("4. Exit");
+
+        int choice = scanner.nextInt();
+        String newValue = "";
+
+        switch (choice) {
+            case 1:
+                System.out.println("Enter your new name:");
+                newValue = scanner.next();
+                currentUser.setName(newValue);
+                break;
+            case 2:
+                System.out.println("Enter your new age:");
+                newValue = scanner.next();
+                currentUser.setAge(newValue);
+                break;
+            case 3:
+                System.out.println("Enter your new password:");
+                newValue = scanner.next();
+                currentUser.setPassword(newValue);
+                break;
+            case 4:
+                return;
+            default:
+                System.out.println("Invalid choice.");
+                return;
         }
-        
-        scanner.close();
+        String fileName = currentUser.getID();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(currentUser.getName());
+            writer.newLine();
+            writer.write(currentUser.getAge());
+            writer.newLine();
+            writer.write(currentUser.getPassword());
+            writer.newLine();
+            writer.close();
+        } 
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
+
+
 
 
 
