@@ -57,22 +57,12 @@ public class Lecturer extends User {
             Question += input.nextLine().charAt(0) + ";" ;
 
             System.out.print("Enter the correct answer in one single char: ");
-            switch(input.nextLine().charAt(0)) {
-                case 'a':
-                    Question += '1';
-                    break;
-                case 'b':
-                    Question += '2';
-                    break;
-                case 'c':
-                    Question += '3';
-                    break;
-                case 'd':
-                    Question += '4';
-                    break;
-                default:
-                    System.out.println("invalid input, defaulting to answer A");
-                    Question += '1';
+            char ans = ("" + input.nextLine().charAt(0)).toLowerCase().charAt(0);
+            if (ans == 'a' || ans == 'b' || ans == 'c' || ans == 'd') Question += ans - 96 ;
+            else
+            {
+                System.out.println("invalid input, defaulting to answer A");
+                Question += '1';
             }
 
             // add this line to line array
