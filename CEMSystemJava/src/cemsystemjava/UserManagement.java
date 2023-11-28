@@ -52,7 +52,8 @@ public class UserManagement {
             return 2;
         }
     }
-        public void ChangeInfo() {
+    public void ChangeInfo() {
+        //while loop if invalid then loop
         Scanner scanner = new Scanner(System.in);
         System.out.println("Do you want to change your name, age, password, or exit? Enter the corresponding number.");
         System.out.println("1. Change Name");
@@ -72,7 +73,7 @@ public class UserManagement {
             case 2:
                 System.out.println("Enter your new age:");
                 newValue = scanner.next();
-                currentUser.setAge(newValue);
+                currentUser.setAge(Integer.parseInt(newValue));
                 break;
             case 3:
                 System.out.println("Enter your new password:");
@@ -87,7 +88,10 @@ public class UserManagement {
         }
         String fileName = currentUser.getID();
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            // directory included
+            // with all 3 cases
+            // Database.overwriteFile(dir, filename(ID), string[] {...});
+            BufferedWriter writer = new BufferedWriter(new FileWriter(Database.TABLE_STUDS+fileName));
             writer.write(currentUser.getName());
             writer.newLine();
             writer.write(currentUser.getAge());
