@@ -1,6 +1,14 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 /**
  *
@@ -16,11 +24,13 @@ public class Admin extends User {
     
     public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)
     {
-        String[] line= {sName, ""+sAge, password};
+        String[] line= {sName, ""+sAge, password, ""};
         for(int i=0;i<courses.length;i++){
             line[3] += courses[i] + ";";
         }
         Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
+        File file = new File(Database.TABLE_STUDS+""+student_id+"tests/");
+        file.mkdirs();
     }
     
     public void AddLecturer(int lecturer_id, String LName, int LAge, String password, String[] courses)
@@ -30,6 +40,13 @@ public class Admin extends User {
     
     public boolean DeleteStudent(int ID)
     {
+        try (Stream<Path> pathStream = Files.walk(new File(Database.TABLE_STUDS,""+ID+"tests").toPath())) {
+            pathStream.sorted(Comparator.reverseOrder())
+              .map(Path::toFile)
+              .forEach(File::delete);
+        } catch (IOException ex) {
+            return false;
+        }
         return Database.removeRecord(Database.TABLE_STUDS,""+ID);
     }
     

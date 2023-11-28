@@ -18,7 +18,7 @@ public class Lecturer extends User {
         this.course = course;
     }
 
-    public boolean AddTest(){
+    public boolean AddTest(String Course){
         Scanner input = new Scanner(System.in);
 
         int rand_name = (int) (Math.random() * 10000) , QN /* Questions Num */;
@@ -79,7 +79,7 @@ public class Lecturer extends User {
             Lines[i] = Question ;
         }
         
-        return Database.writeRecord(Database.TABLE_EXAMS, Integer.toString(rand_name), Lines);
+        return Database.writeRecord(Database.TABLE_EXAMS + Course + "/", Integer.toString(rand_name), Lines);
     }
     
     public boolean DeleteTest(int test_id)
