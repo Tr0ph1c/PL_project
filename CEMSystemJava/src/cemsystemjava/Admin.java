@@ -1,15 +1,12 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
-<<<<<<< Updated upstream
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
 import java.util.stream.Stream;
-=======
->>>>>>> Stashed changes
 
 /**
  *
@@ -25,7 +22,6 @@ public class Admin extends User {
     
     public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)
     {
-<<<<<<< Updated upstream
         String[] line= {sName, ""+sAge, password, ""};
         for(int i=0;i<courses.length;i++){
             line[3] += courses[i] + ";";
@@ -33,17 +29,31 @@ public class Admin extends User {
         Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
         File file = new File(Database.TABLE_STUDS+""+student_id+"tests/");
         file.mkdirs();
-=======
-        Database.writeRecord(Database.TABLE_LECTS, password, courses);
         
->>>>>>> Stashed changes
+        Database.writeRecord(Database.TABLE_LECTS, password, courses);
     }
     
     public void AddLecturer(int lecturer_id, String LName, int LAge, String password, String[] courses)
     {
-        System.out.println("Add Lecturer");
+        String lecturerPath = Database.TABLE_LECTS;
+
+        String[] lecturerInfo = new String[courses.length + 2];
+        lecturerInfo[0] = LName;
+        lecturerInfo[1] = ""+LAge;
+        lecturerInfo[2] = password;
+        for (int i = 0; i < courses.length; i++) {
+            lecturerInfo[3] += courses[i] + ";";
+        }
+
+        boolean added = Database.writeRecord(lecturerPath, ""+lecturer_id, lecturerInfo);
+        if (added) {
+            System.out.println("Lecturer added successfully.");
+        } else {
+            System.out.println("Lecturer with ID " + lecturer_id + " already exists.");
+        }
     }
     
+    //make into interface function 'void'
     public boolean DeleteStudent(int ID)
     {
         try (Stream<Path> pathStream = Files.walk(new File(Database.TABLE_STUDS,""+ID+"tests").toPath())) {
@@ -56,9 +66,16 @@ public class Admin extends User {
         return Database.removeRecord(Database.TABLE_STUDS,""+ID);
     }
     
-    public void DeleteLecturer(int ID)
+    public void DeleteLecturer(int lecturer_id)
     {
-        System.out.println("Delete Lecturer");
+        String lecturerPath = Database.TABLE_LECTS;
+
+        boolean deleted = Database.delRecord(lecturerPath, ""+lecturer_id);
+        if (deleted) {
+            System.out.println("Lecturer with ID " + lecturer_id + " deleted successfully.");
+        } else {
+            System.out.println("Lecturer with ID " + lecturer_id + " does not exist.");
+        }
     }
     
     /*
