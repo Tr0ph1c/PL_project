@@ -8,16 +8,21 @@ public class User {
     private String name;
     private int age;
     private String password;
+    private UserManagement.UserType type;
 
 
-    public User(String name, int age, String password) {
+    public User(String name, int age, String password, UserManagement.UserType type) {
         this.id = ID++;
         this.name = name;
         this.age = age;
         this.password = password;
+        this.type = type;
     }
-
-
+    
+    public int getID() {
+        return id;
+    }
+    
     public String getName() {
         return name;
     }
@@ -41,15 +46,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-//    public static void clearScreen() {
-//        Runtime.getRuntime().exec("cls");
-//    }
-
-    String getID() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public UserManagement.UserType getType() {
+        return type;
     }
-
-
 }

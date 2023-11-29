@@ -3,7 +3,7 @@ package cemsystemjava;
 import DirectoryBasedDB.Database;
 import java.io.File;
 
-public class CEMSystemJava {
+public class CEMApp {
 
     public static void main(String[] args) {
         

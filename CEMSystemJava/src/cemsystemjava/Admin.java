@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Comparator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.stream.Stream;
 =======
 >>>>>>> Stashed changes
@@ -22,7 +20,7 @@ import java.util.stream.Stream;
 public class Admin extends User {
     
     public Admin(String name, int age, String password) {
-        super(name, age, password);
+        super(name, age, password, UserManagement.UserType.ADMINISTRATOR);
     }
     
     public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)

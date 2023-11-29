@@ -14,11 +14,11 @@ public class Lecturer extends User {
     private String course;
     
     public Lecturer(String name, int age, String password, String course) {
-        super(name, age, password);
+        super(name, age, password, UserManagement.UserType.LECTURER);
         this.course = course;
     }
 
-    public boolean AddTest(String Course){
+    public boolean AddTest(){
         Scanner input = new Scanner(System.in);
 
         int rand_name = (int) (Math.random() * 10000) , QN /* Questions Num */;
@@ -69,7 +69,8 @@ public class Lecturer extends User {
             Lines[i] = Question ;
         }
         
-        return Database.writeRecord(Database.TABLE_EXAMS + Course + "/", Integer.toString(rand_name), Lines);
+        //change the ID of the test later
+        return Database.writeRecord(Database.TABLE_EXAMS + course + "/", Integer.toString(rand_name), Lines);
     }
     
     public boolean DeleteTest(int test_id)
