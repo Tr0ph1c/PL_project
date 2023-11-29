@@ -1,6 +1,7 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
+<<<<<<< Updated upstream
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +10,8 @@ import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
+=======
+>>>>>>> Stashed changes
 
 /**
  *
@@ -24,6 +27,7 @@ public class Admin extends User {
     
     public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)
     {
+<<<<<<< Updated upstream
         String[] line= {sName, ""+sAge, password, ""};
         for(int i=0;i<courses.length;i++){
             line[3] += courses[i] + ";";
@@ -31,6 +35,10 @@ public class Admin extends User {
         Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
         File file = new File(Database.TABLE_STUDS+""+student_id+"tests/");
         file.mkdirs();
+=======
+        Database.writeRecord(Database.TABLE_LECTS, password, courses);
+        
+>>>>>>> Stashed changes
     }
     
     public void AddLecturer(int lecturer_id, String LName, int LAge, String password, String[] courses)
