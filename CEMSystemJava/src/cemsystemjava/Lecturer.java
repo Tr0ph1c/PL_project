@@ -17,6 +17,10 @@ public class Lecturer extends User {
         super(name, age, password, UserManagement.UserType.LECTURER);
         this.course = course;
     }
+    
+    public String getCourse() {
+        return course;
+    }
 
     public boolean AddTest(){
         Scanner input = new Scanner(System.in);

@@ -20,8 +20,14 @@ public class Admin extends User {
         super(name, age, password, UserManagement.UserType.ADMINISTRATOR);
     }
     
-    public void AddStudent(int student_id , String sName, int sAge, String password , String[] courses)
+    public void AddStudent(Student student)
     {
+        int student_id = student.getID();
+        String sName = student.getName();
+        int sAge = student.getAge();
+        String password = student.getPassword();
+        String[] courses = student.getCourses();
+        
         String[] line= {sName, ""+sAge, password, ""};
         for(int i=0;i<courses.length;i++){
             line[3] += courses[i] + ";";
@@ -33,17 +39,21 @@ public class Admin extends User {
         Database.writeRecord(Database.TABLE_LECTS, password, courses);
     }
     
-    public void AddLecturer(int lecturer_id, String LName, int LAge, String password, String[] courses)
+    public void AddLecturer(Lecturer lecturer)
     {
+        int lecturer_id = lecturer.getID();
+        String LName = lecturer.getName();
+        int LAge = lecturer.getAge();
+        String password = lecturer.getPassword();
+        String course = lecturer.getCourse();
+        
         String lecturerPath = Database.TABLE_LECTS;
 
-        String[] lecturerInfo = new String[courses.length + 2];
+        String[] lecturerInfo = new String[4];
         lecturerInfo[0] = LName;
         lecturerInfo[1] = ""+LAge;
         lecturerInfo[2] = password;
-        for (int i = 0; i < courses.length; i++) {
-            lecturerInfo[3] += courses[i] + ";";
-        }
+        lecturerInfo[3] = course;
 
         boolean added = Database.writeRecord(lecturerPath, ""+lecturer_id, lecturerInfo);
         if (added) {
@@ -53,17 +63,21 @@ public class Admin extends User {
         }
     }
     
-    //make into interface function 'void'
-    public boolean DeleteStudent(int ID)
+    public void DeleteStudent(int ID)
     {
         try (Stream<Path> pathStream = Files.walk(new File(Database.TABLE_STUDS,""+ID+"tests").toPath())) {
             pathStream.sorted(Comparator.reverseOrder())
               .map(Path::toFile)
               .forEach(File::delete);
         } catch (IOException ex) {
-            return false;
+            ex.printStackTrace();
         }
-        return Database.removeRecord(Database.TABLE_STUDS,""+ID);
+        
+        if (Database.removeRecord(Database.TABLE_STUDS,""+ID)) {
+            System.out.println("Student with ID {" + ID + "} deleted successfully.");
+        } else {
+            System.out.println("Student with ID {" + ID + "} does not exist.");
+        }
     }
     
     public void DeleteLecturer(int lecturer_id)
@@ -72,9 +86,9 @@ public class Admin extends User {
 
         boolean deleted = Database.delRecord(lecturerPath, ""+lecturer_id);
         if (deleted) {
-            System.out.println("Lecturer with ID " + lecturer_id + " deleted successfully.");
+            System.out.println("Lecturer with ID {" + lecturer_id + "} deleted successfully.");
         } else {
-            System.out.println("Lecturer with ID " + lecturer_id + " does not exist.");
+            System.out.println("Lecturer with ID {" + lecturer_id + "} does not exist.");
         }
     }
     

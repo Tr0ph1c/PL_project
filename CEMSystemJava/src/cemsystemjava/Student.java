@@ -9,8 +9,13 @@ package cemsystemjava;
 public class Student extends User{
     private String[] Courses ;
 
-    public Student(String name, int age, String password) {
+    public Student(String name, int age, String password, String[] courses) {
         super(name, age, password, UserManagement.UserType.STUDENT);
+        Courses = courses;
+    }
+    
+    public String[] getCourses () {
+        return Courses;
     }
     
     public void TakeTest(int test_id){
