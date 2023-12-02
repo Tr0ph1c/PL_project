@@ -29,8 +29,9 @@ public class Test {
     public String[] questions ;
     public int mark;
     boolean isDone;
-    public static String course;
-    public static boolean CreateTest()
+    public String course;
+    
+    public boolean CreateTest()
     {
         Scanner input = new Scanner(System.in);
 
