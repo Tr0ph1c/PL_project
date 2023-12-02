@@ -21,9 +21,6 @@ public class Lecturer extends User {
     public String getCourse() {
         return course;
     }
-
-    public boolean AddTest(){
-        }
     
     public boolean DeleteTest(int test_id)
     {
