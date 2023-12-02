@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class UserManagement {
-    public enum UserType {
+public final class UserManagement {
+    public static enum UserType {
         STUDENT,
         LECTURER,
         ADMINISTRATOR
@@ -15,10 +15,9 @@ public class UserManagement {
     
     public static User currentUser;
     
-    public static int Login (int id, String password, UserType type)
+    public static int Login (String ID, String password, UserType type)
     {
         String dir = "";
-        String ID = Integer.toString(id);
         
         switch (type) {
             case STUDENT:
