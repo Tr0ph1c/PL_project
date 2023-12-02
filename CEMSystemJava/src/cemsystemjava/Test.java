@@ -10,24 +10,26 @@ import java.util.Scanner;
 /**
  *
  * @author ahmniab
+ * Test implementation without Question class is impossible !
+ * 
  */
 
-class Question{
-    String question ;
-    String[] answers ; 
-    int correctAnswer ;
-    boolean isCorrect ;
-    Question(){
-        this.answers = new String[4];
-    }
-}
+//class Question{
+//    String question ;
+//    String[] answers ; 
+//    int correctAnswer ;
+//    boolean isCorrect ;
+//    Question(){
+//        this.answers = new String[4];
+//    }
+//}
 
 public class Test {
-    int test_ID;
-    Question[] questions ;
-    int mark;
+    public int test_ID;
+    public String[] questions ;
+    public int mark;
     boolean isDone;
-    static String course;
+    public static String course;
     public static boolean CreateTest()
     {
         Scanner input = new Scanner(System.in);
@@ -45,7 +47,7 @@ public class Test {
             }
         }
 
-        Question[] Lines = new Question[QN] ;
+        String[] Lines = new String[QN] ;
 
         for (int i = 0 ; i < QN ; i++)
         {
@@ -83,5 +85,22 @@ public class Test {
         //change the ID of the test later
         return Database.writeRecord(Database.TABLE_EXAMS + course + "/", Integer.toString(rand_name), Lines);
     
+    }
+    /*
+    *
+    *@author ahmniab
+    * Function: take_test
+    * pre :
+    *   -The test is exist 
+    * Parameters:
+    *   - testID : an int represent the id of the test .
+    * Returns:
+    *   The mark of the test.
+    *
+    */
+    public int take_test()
+    {
+        System.out.println("Take test will complete after Question class");
+        return 1;
     }
 }
