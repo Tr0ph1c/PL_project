@@ -16,7 +16,7 @@ public class Lecturer extends User {
     private String course;
     
     public Lecturer(String name, int age, String password, String course) {
-        super(++ID, name, age, password, UserManagement.UserType.LECTURER);
+        super(generateID(), name, age, password, UserManagement.UserType.LECTURER);
         this.course = course;
     }
     

@@ -14,7 +14,7 @@ public class Student extends User{
     private String[] Courses ;
 
     public Student(String name, int age, String password, String[] courses) {
-        super(++ID, name, age, password, UserManagement.UserType.STUDENT);
+        super(generateID(), name, age, password, UserManagement.UserType.STUDENT);
         Courses = courses;
     }
     
