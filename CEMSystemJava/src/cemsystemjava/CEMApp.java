@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class CEMApp {
 
     public static void main(String[] args) {
+        LoadIDs();
+        
         Scanner scanner = new Scanner(System.in);
         int choice;
 
@@ -67,5 +69,17 @@ public class CEMApp {
         }
 
         scanner.close();
+    }
+    
+    private static void LoadIDs () {
+        String stuID = Database.getlines(Database.TABLE_STUDS+"ID")[0];
+        String lectID = Database.getlines(Database.TABLE_LECTS+"ID")[0];
+        String admID = Database.getlines(Database.TABLE_ADMIN+"ID")[0];
+        String tstID = Database.getlines(Database.TABLE_EXAMS+"ID")[0];
+        
+        Student.ID = Integer.parseInt(stuID);
+        Lecturer.ID = Integer.parseInt(lectID);
+        Admin.ID = Integer.parseInt(admID);
+        Test.ID = Integer.parseInt(tstID);
     }
 }

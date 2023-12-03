@@ -11,13 +11,13 @@ import java.util.stream.Stream;
 /**
  *
  * @author ahmniab
- * this methods datatype maybe bool but i left it to the implementer
  * 
  */
 public class Admin extends User {
+    public static int ID;
     
     public Admin(String name, int age, String password) {
-        super(name, age, password, UserManagement.UserType.ADMINISTRATOR);
+        super(generateID(), name, age, password, UserManagement.UserType.ADMINISTRATOR);
     }
     
     public void AddStudent(Student student)
@@ -126,5 +126,9 @@ public class Admin extends User {
     {
         System.out.println("Assign Course To Lecturer");
     }
+    
+    private static int generateID () {
+        Database.overwriteRecord(Database.TABLE_ADMIN, "ID", new String[] {""+(++ID)});
+        return ID;
+    }
 }
-

@@ -1,9 +1,6 @@
 package cemsystemjava;
 
 public class User {
-
-    private static int ID = 1000;
-
     private int id;
     private String name;
     private int age;
@@ -11,8 +8,8 @@ public class User {
     private UserManagement.UserType type;
 
 
-    public User(String name, int age, String password, UserManagement.UserType type) {
-        this.id = ID++;
+    public User(int id, String name, int age, String password, UserManagement.UserType type) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.password = password;

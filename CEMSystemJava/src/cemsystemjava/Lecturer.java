@@ -11,10 +11,12 @@ import java.util.Scanner;
  * 
  */
 public class Lecturer extends User {
+    public static int ID;
+    
     private String course;
     
     public Lecturer(String name, int age, String password, String course) {
-        super(name, age, password, UserManagement.UserType.LECTURER);
+        super(++ID, name, age, password, UserManagement.UserType.LECTURER);
         this.course = course;
     }
     
@@ -29,5 +31,10 @@ public class Lecturer extends User {
     
     public void GenerateReport(int student_id){
         System.out.println("Generate Report");
+    }
+    
+    private static int generateID () {
+        Database.overwriteRecord(Database.TABLE_LECTS, "ID", new String[] {""+(++ID)});
+        return ID;
     }
 }

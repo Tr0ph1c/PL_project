@@ -1,5 +1,7 @@
 package cemsystemjava;
 
+import DirectoryBasedDB.Database;
+
 /**
  *
  * @author ahmniab
@@ -7,10 +9,12 @@ package cemsystemjava;
  * 
  */
 public class Student extends User{
+    public static int ID;
+    
     private String[] Courses ;
 
     public Student(String name, int age, String password, String[] courses) {
-        super(name, age, password, UserManagement.UserType.STUDENT);
+        super(++ID, name, age, password, UserManagement.UserType.STUDENT);
         Courses = courses;
     }
     
@@ -27,4 +31,8 @@ public class Student extends User{
         System.out.println("Check Reports");
     }
     
+    private static int generateID () {
+        Database.overwriteRecord(Database.TABLE_STUDS, "ID", new String[] {""+(++ID)});
+        return ID;
+    }
 }

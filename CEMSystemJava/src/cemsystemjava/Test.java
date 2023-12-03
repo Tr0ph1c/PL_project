@@ -14,28 +14,20 @@ import java.util.Scanner;
  * 
  */
 
-//class Question{
-//    String question ;
-//    String[] answers ; 
-//    int correctAnswer ;
-//    boolean isCorrect ;
-//    Question(){
-//        this.answers = new String[4];
-//    }
-//}
-
 public class Test {
+    public static int ID;
+    
     public int test_ID;
     public String[] questions ;
     public int mark;
-    boolean isDone;
+    public boolean isDone;
     public String course;
     
     public boolean CreateTest()
     {
         Scanner input = new Scanner(System.in);
 
-        int rand_name = (int) (Math.random() * 10000) , QN /* Questions Num */;
+        int test_id = generateID() , QN /* Questions Num */;
         while (true){
             try {
                 System.out.print("Please enter the number of questions: ");
@@ -83,8 +75,7 @@ public class Test {
             Lines[i] = Question ;
         }
         
-        //change the ID of the test later
-        return Database.writeRecord(Database.TABLE_EXAMS + course + "/", Integer.toString(rand_name), Lines);
+        return Database.writeRecord(Database.TABLE_EXAMS + course + "/", Integer.toString(test_id), Lines);
     
     }
     /*
@@ -103,5 +94,10 @@ public class Test {
     {
         System.out.println("Take test will complete after Question class");
         return 1;
+    }
+    
+    private static int generateID () {
+        Database.overwriteRecord(Database.TABLE_EXAMS, "ID", new String[] {""+(++ID)});
+        return ID;
     }
 }
