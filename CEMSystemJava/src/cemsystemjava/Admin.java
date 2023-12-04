@@ -124,7 +124,10 @@ public class Admin extends User {
     
     public void AssignCourseToLecturer(String course, int lecturer_id)
     {
-        System.out.println("Assign Course To Lecturer");
+//        System.out.println("Assign Course To Lecturer");
+        String[] lecLines = Database.getlines(Database.TABLE_LECTS + lecturer_id);
+        lecLines[3] = course;
+         Database.overwriteRecord(Database.TABLE_LECTS, ""+lecturer_id, lecLines);
     }
     
     private static int generateID () {
