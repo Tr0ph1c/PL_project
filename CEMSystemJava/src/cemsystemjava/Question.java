@@ -22,6 +22,20 @@ public class Question {
         this.correctAnswer = correctAnswer;
         this.isCorrect = false;
     }
+    
+    public Question(String line) {
+        this.answers = new String[4];
+        String[] attributes = line.split(";") ;
+        
+        this.question = attributes[0];
+        
+        for(int i = 0 ; i < 4 ; i++)
+            this.answers[i] = attributes[ i + 1 ];
+        
+        this.correctAnswer = (int) attributes[5].charAt(0) - '0';
+        
+        
+    }
 
     public void answer(int ans) {
         if (ans >= 1 && ans <= 4) {
@@ -38,7 +52,7 @@ public class Question {
         for (String answer : answers) {
             result.append(answer).append(";");
         }
-        result.append(correctAnswer).append(";").append(isCorrect);
+        result.append(correctAnswer);
         return result.toString();
     }
 }

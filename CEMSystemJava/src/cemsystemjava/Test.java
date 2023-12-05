@@ -20,6 +20,7 @@ public class Test {
     public int test_ID;
     public String[] questions ;
     public int mark;
+    public int total;
     public boolean isDone;
     public String course;
     public Test(){
@@ -63,7 +64,7 @@ public class Test {
             
             System.out.print("Enter the correct answer in one single char: ");
             char ans = ("" + input.nextLine().charAt(0)).toLowerCase().charAt(0);
-            if (ans == 'a' || ans == 'b' || ans == 'c' || ans == 'd') question.correctAnswer = ans - 96 ;
+            if (ans == 'a' || ans == 'b' || ans == 'c' || ans == 'd') question.correctAnswer = ans - 'a' ;
             else
             {
                 System.out.println("invalid input, defaulting to answer A");
@@ -83,16 +84,37 @@ public class Test {
     * Function: take_test
     * pre :
     *   -The test is exist 
-    * Parameters:
-    *   - testID : an int represent the id of the test .
-    * Returns:
-    *   The mark of the test.
+    * 
     *
     */
-    public int take_test()
+    public void take_test()
     {
-        System.out.println("Take test will complete after Question class");
-        return 1;
+        Scanner input = new Scanner(System.in);
+        String[] Lines = 
+                Database.getlines(Database.TABLE_EXAMS + '/' /*+ course + '/' */ + this.test_ID  );
+        this.total = Lines.length;
+        
+        
+        System.out.println( "Please choose the correct answer from the following questions :");
+        for(int i = 0 ; i <  total; i++)
+        {
+            System.out.print( i + " : ");
+            Question q = new Question(Lines[i]);
+            System.out.println(q.question);
+            System.out.println("(a) " + q.answers[0] + "\t\t" + "(b) " + q.answers[1]);
+            System.out.println("(c) " + q.answers[2] + "\t\t" + "(d) " + q.answers[3]);
+            System.out.println();
+            System.out.print("Please choose (a,b,c,d) : ");
+            
+            int ans = input.nextLine().charAt(0) - 'a';
+            if(ans == q.correctAnswer) this.mark++;
+            
+            
+        }
+        
+        System.out.println("Your mark is " + this.mark + '/' + this.total);
+        
+        
     }
     
     private static int generateID () {
