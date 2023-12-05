@@ -8,11 +8,14 @@ package cemsystemjava;
 import DirectoryBasedDB.Database;
 
 public class Question {
-    private final String question;
-    private final String[] answers;
-    private final int correctAnswer;
-    private boolean isCorrect;
-
+    public String question;
+    public String[] answers;
+    public int correctAnswer;
+    public boolean isCorrect;
+    public Question()
+    {
+        this.answers = new String[4];
+    }
     public Question(String question, String[] answers, int correctAnswer) {
         this.question = question;
         this.answers = answers;

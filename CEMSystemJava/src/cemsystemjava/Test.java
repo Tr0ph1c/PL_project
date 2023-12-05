@@ -22,12 +22,16 @@ public class Test {
     public int mark;
     public boolean isDone;
     public String course;
+    public Test(){
+        this.test_ID = /*generateID()*/ 1230;
+        
+    }
     
     public boolean CreateTest()
     {
         Scanner input = new Scanner(System.in);
 
-        int test_id = generateID() , QN /* Questions Num */;
+        int QN /* Questions Num */;
         while (true){
             try {
                 System.out.print("Please enter the number of questions: ");
@@ -46,36 +50,31 @@ public class Test {
         {
         //  Build the line :-)
 
-            String Question = "";
-            System.out.println("Please write question number [" + i + "]:");
-            Question += input.nextLine() + ";" ;
+            Question question = new Question();
+            System.out.println("Please write question number [" + (i + 1) + "]:");
+            question.question = input.nextLine() ;
 
-            System.out.print("Answer (a) : ");
-            Question += input.nextLine().charAt(0) + ";" ;
-
-            System.out.print("Answer (b) : ");
-            Question += input.nextLine().charAt(0) + ";" ;
-
-            System.out.print("Answer (c) : ");
-            Question += input.nextLine().charAt(0) + ";" ;
-
-            System.out.print("Answer (d) : ");
-            Question += input.nextLine().charAt(0) + ";" ;
-
+            for(int j = 0 ; j < 4 ; j++)
+            {
+                System.out.print("Answer ("+(char)('a' + j )+") : ");
+                question.answers[j] = input.nextLine() ;
+                
+            }
+            
             System.out.print("Enter the correct answer in one single char: ");
             char ans = ("" + input.nextLine().charAt(0)).toLowerCase().charAt(0);
-            if (ans == 'a' || ans == 'b' || ans == 'c' || ans == 'd') Question += ans - 96 ;
+            if (ans == 'a' || ans == 'b' || ans == 'c' || ans == 'd') question.correctAnswer = ans - 96 ;
             else
             {
                 System.out.println("invalid input, defaulting to answer A");
-                Question += '1';
+                question.correctAnswer = 1;
             }
 
             // add this line to line array
-            Lines[i] = Question ;
+            Lines[i] = question.toString() ;
         }
         
-        return Database.writeRecord(Database.TABLE_EXAMS + course + "/", Integer.toString(test_id), Lines);
+        return Database.writeRecord(Database.TABLE_EXAMS + /*course +*/ "/", Integer.toString(this.test_ID), Lines);
     
     }
     /*
