@@ -13,8 +13,8 @@ public class Student extends User{
     
     private String[] Courses ;
 
-    public Student(String name, int age, String password, String[] courses) {
-        super(generateID(), name, age, password, UserManagement.UserType.STUDENT);
+    public Student(int _id, String name, int age, String password, String[] courses) {
+        super(_id, name, age, password, UserManagement.UserType.STUDENT);
         Courses = courses;
     }
     
@@ -31,7 +31,7 @@ public class Student extends User{
         System.out.println("Check Reports");
     }
     
-    private static int generateID () {
+    public static int generateID () {
         Database.overwriteRecord(Database.TABLE_STUDS, "ID", new String[] {""+(++ID)});
         return ID;
     }

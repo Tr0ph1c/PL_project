@@ -15,8 +15,8 @@ public class Lecturer extends User {
     
     private String course;
     
-    public Lecturer(String name, int age, String password, String course) {
-        super(generateID(), name, age, password, UserManagement.UserType.LECTURER);
+    public Lecturer(int _id, String name, int age, String password, String course) {
+        super(_id, name, age, password, UserManagement.UserType.LECTURER);
         this.course = course;
     }
     
@@ -33,7 +33,7 @@ public class Lecturer extends User {
         System.out.println("Generate Report");
     }
     
-    private static int generateID () {
+    public static int generateID () {
         Database.overwriteRecord(Database.TABLE_LECTS, "ID", new String[] {""+(++ID)});
         return ID;
     }

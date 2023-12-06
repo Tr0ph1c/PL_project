@@ -36,10 +36,33 @@ public final class UserManagement {
             
             BufferedReader reader = new BufferedReader(new FileReader(dir+ID));
             String line = "";
+            String name = "";
+            String age = "";
             
-            for (int i = 0; i <= 2; i++, line = reader.readLine());
+            
+            for (int i = 0; i <= 2; i++) {
+                line = reader.readLine();
+                switch (i) {
+                    case 0 -> name = line;
+                    case 1 -> age = line;
+                }
+            }
+            
+            if (type == UserType.LECTURER) {
+                String course = reader.readLine();
+                Lecturer u = new Lecturer(Integer.parseInt(ID), name, Integer.parseInt(age), password, course);
+                currentUser = u;
+            } else if (type == UserType.STUDENT) {
+                String[] courses = reader.readLine().split(";");
+                Student u = new Student(Integer.parseInt(ID), name, Integer.parseInt(age), password, courses);
+                currentUser = u;
+            } else if (type == UserType.ADMINISTRATOR) {
+                Admin u = new Admin(Integer.parseInt(ID), name, Integer.parseInt(age), password);
+                currentUser = u;
+            }
             
             if (line.equals(password)) {
+                
                 return 0;
             } else {
                 return 1;
@@ -50,7 +73,7 @@ public final class UserManagement {
         }
     }
     @SuppressWarnings("empty-statement")
-    public void ChangeInfo() {
+    public static void ChangeInfo() {
         UserType type = currentUser.getType();
         
         while(true){
@@ -105,7 +128,7 @@ public final class UserManagement {
             String name = currentUser.getName();
             String password = currentUser.getPassword();
             String age = Integer.toString (currentUser.getAge());
-            String[] lines ={name,password,age};
+            String[] lines ={name,age,password};
             Database.overwriteRecord (dir, fileName, lines);
        }
     }
