@@ -85,11 +85,12 @@ public final class UserManagement {
             System.out.println("4. Exit");
 
             int choice = scanner.nextInt();
+            scanner.nextLine();
             String newValue = "";
                 switch (choice) {
                     case 1:
                         System.out.println("Enter your new name:");
-                        newValue = scanner.next();
+                        newValue = scanner.nextLine();
                         currentUser.setName(newValue);
                         break;
                     case 2:
