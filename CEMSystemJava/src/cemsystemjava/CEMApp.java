@@ -227,13 +227,33 @@ public class CEMApp {
                     System.out.println("Inappropriate number of arguemnts");
                     continue;
                 }
-                System.out.println("showing marks of students on test " + inp[1]);
+                showMarks(inp[1]);
             } else if ("exit".equals(cmd.toLowerCase())) {
                 return;
             } else {
                 System.out.println("Invalid command");
             }
         }
+    }
+    
+    private static void showMarks (String test_id) {
+        System.out.println("Displaying student marks on test: " + test_id);
+        System.out.println("TestID\tMark");
+        File[] files = new File(Database.TABLE_STUDS).listFiles();
+        for (File file : files) {
+            if (file.isDirectory()) {
+                File[] doneTests = new File(Database.TABLE_STUDS+file.getName()+"/").listFiles();
+                
+                for (File test : doneTests) {
+                    if (test.getName().equals(test_id)) {
+                        String stu_id = file.getName().replace("tests", "");
+                        String mark = Database.getlines(Database.TABLE_STUDS+file.getName()+"/"+test.getName())[1];
+                        System.out.println(stu_id + "\t" + mark);
+                    }
+                }
+            }
+        }
+        System.out.println("=== End of marks ===");
     }
     
     private static void AdminMenu() {
