@@ -30,7 +30,7 @@ public class Student extends User{
         Test test = new Test();
         test.loadTest(test_id);
         int mark = test.take_test();
-        String[] ReportLines = {""+test.test_ID, test.course, mark + "/" + test.total};
+        String[] ReportLines = {test.course, mark + "/" + test.total};
         Database.overwriteRecord(Database.TABLE_STUDS+super.getID()+"tests/", test_id, ReportLines);
     }
     

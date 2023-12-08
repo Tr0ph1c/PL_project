@@ -150,16 +150,16 @@ public class CEMApp {
     private static void FetchMarks(Student u) {
         Scanner scanner = new Scanner(System.in);
         String inp;
-        String dir = Database.TABLE_STUDS+u.getID()+"tests";
+        String dir = Database.TABLE_STUDS+u.getID()+"tests/";
         
         while (true) {
-            System.out.println("Test ID" + "\t" + "Course" + "\t" + "Mark");
+            System.out.println("TestID" + "\t" + "Course" + "\t" + "Mark");
             File[] files = new File(dir).listFiles();
 
             for (File file : files) {
                 String fileName = file.toPath().getFileName().toString();
                 String[] lines = Database.getlines(dir+fileName);
-                System.out.println(fileName + "\t" + lines[0] + "\t" + (lines.length - 1));
+                System.out.println(fileName + "\t" + lines[0] + "\t" + lines[1]);
             }
             
             System.out.println("--------\ntype 'EXIT' to leave this page");
