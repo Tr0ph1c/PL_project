@@ -47,11 +47,11 @@ public class Admin extends User {
         int sAge = student.getAge();
         String password = student.getPassword();
         
-        String[] line= {sName, ""+sAge, password, ""};
+        String[] lines = {sName, ""+sAge, password, " "};
 //        for (String course : courses) {
 //            line[3] += course + ";";
 //        }
-        boolean added = Database.writeRecord(Database.TABLE_STUDS,""+student_id,line);
+        boolean added = Database.writeRecord(Database.TABLE_STUDS,""+student_id, lines);
         
         if (added) {
             File file = new File(Database.TABLE_STUDS+""+student_id+"tests/");
@@ -116,6 +116,8 @@ public class Admin extends User {
     }
     
     public void AssignCourse (String course, String user_id, UserType type) {
+        if (!CourseManager.Exists(course)) CourseManager.AddCourse(course);
+        
         switch (type) {
             case STUDENT:
                 String[] lines = Database.getlines(Database.TABLE_STUDS + user_id);

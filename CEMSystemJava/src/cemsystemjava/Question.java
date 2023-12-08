@@ -1,4 +1,3 @@
-
 package cemsystemjava;
 
 /**
@@ -32,17 +31,11 @@ public class Question {
         for(int i = 0 ; i < 4 ; i++)
             this.answers[i] = attributes[ i + 1 ];
         
-        this.correctAnswer = (int) attributes[5].charAt(0) - '0';
-        
-        
+        this.correctAnswer = Integer.parseInt(attributes[5]);
     }
 
-    public void answer(int ans) {
-        if (ans >= 1 && ans <= 4) {
-            if (ans - 1 == correctAnswer) {
-                isCorrect = true;
-            }
-        }
+    public boolean answer(char ans) {
+        return (ans - 96 == correctAnswer);
     }
 
     @Override

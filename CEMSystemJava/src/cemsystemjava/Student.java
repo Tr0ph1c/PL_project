@@ -22,13 +22,16 @@ public class Student extends User{
         return Courses;
     }
     
-    public void TakeTest(int test_id){
-        System.out.println("Take Test");
-    }
-    
-    public void CheckReports()
-    {
-        System.out.println("Check Reports");
+    public void TakeTest(String test_id) {
+        if (CEMApp.getFileNames(Database.TABLE_STUDS+super.getID()+"tests").contains(test_id)) {
+            System.out.println("Cant take a test that you already did.");
+            return;
+        }
+        Test test = new Test();
+        test.loadTest(test_id);
+        int mark = test.take_test();
+        String[] ReportLines = {""+test.test_ID, test.course, mark + "/" + test.total};
+        Database.overwriteRecord(Database.TABLE_STUDS+super.getID()+"tests/", test_id, ReportLines);
     }
     
     public static int generateID () {
