@@ -16,9 +16,14 @@ public class CourseManager {
     public static List<String> courses = new ArrayList<>();
     
     public static void LoadCourses () {
-        courses = new ArrayList<>(Arrays.asList(Database.getlines(Database.TABLE_COURSES + "courses")));
+        try{
+            courses = new ArrayList<>(Arrays.asList(Database.getlines(Database.TABLE_COURSES + "courses")));
+        }
+        catch(IOException e)
+        {
+             System.out.println("Database doas not exist");
+        }
     }
-    
     public static void AddCourse (String course) {
         if (Exists(course)) return;
         

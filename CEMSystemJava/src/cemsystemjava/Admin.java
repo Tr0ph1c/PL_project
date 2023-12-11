@@ -117,10 +117,19 @@ public class Admin extends User {
     
     public void AssignCourse (String course, String user_id, UserType type) {
         if (!CourseManager.Exists(course)) CourseManager.AddCourse(course);
-        
+        String[] lines ;
         switch (type) {
             case STUDENT:
-                String[] lines = Database.getlines(Database.TABLE_STUDS + user_id);
+                
+                
+                try{
+                    lines = Database.getlines(Database.TABLE_STUDS + user_id);
+                }
+                catch(IOException e){
+                    System.out.println("Student ID does not exist");
+                    return;
+                }
+                
                 String[] fourth = lines[3].split(";");
 
                 for(String c : fourth)
@@ -128,14 +137,24 @@ public class Admin extends User {
 
                 lines[3] += ";" + course;
                 Database.overwriteRecord(Database.TABLE_STUDS , user_id, lines);
+                
+                System.out.println("NON valid ID");
                 break;
             case LECTURER:
-                String[] lecLines = Database.getlines(Database.TABLE_LECTS + user_id);
-                lecLines[3] = course;
-                Database.overwriteRecord(Database.TABLE_LECTS, user_id, lecLines);
+                try{
+                lines = Database.getlines(Database.TABLE_LECTS + user_id);
+                }
+                catch(IOException e)
+                {
+                    System.out.println("NON valid ID");
+                    return;
+                }
+                lines[3] = course;
+                Database.overwriteRecord(Database.TABLE_LECTS, user_id, lines);
                 break;
         }
     }
+
     
     public static int generateID () {
         Database.overwriteRecord(Database.TABLE_ADMIN, "ID", new String[] {""+(++ID)});
