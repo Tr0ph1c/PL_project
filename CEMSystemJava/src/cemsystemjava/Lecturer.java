@@ -69,7 +69,7 @@ public class Lecturer extends User {
             }
 
             // add this line to line array (with offset of 1 for course name at line[0])
-            Lines[i+1] = question.toString() ;
+            Lines[i+1] = question.toString();
         }
         
         return Database.writeRecord(Database.TABLE_EXAMS, Integer.toString(Test.generateID()), Lines);

@@ -62,7 +62,6 @@ public final class UserManagement {
             }
             
             if (line.equals(password)) {
-                
                 return 0;
             } else {
                 return 1;

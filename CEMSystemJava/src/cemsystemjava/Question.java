@@ -4,7 +4,6 @@ package cemsystemjava;
  *
  * @ x bn z
  */
-import DirectoryBasedDB.Database;
 
 public class Question {
     public String question;
@@ -33,14 +32,16 @@ public class Question {
         
         this.correctAnswer = Integer.parseInt(attributes[5]);
     }
-
+    
+    //CorrectAnswer is (int)
+    //ans is (char) [a,b,c,d]
     public boolean answer(char ans) {
         return (ans - 96 == correctAnswer);
     }
 
     @Override
     public String toString() {
-        StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder(); //String data type but with append()
         result.append(question).append(";");
         for (String answer : answers) {
             result.append(answer).append(";");

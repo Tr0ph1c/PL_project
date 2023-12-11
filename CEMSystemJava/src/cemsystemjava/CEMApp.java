@@ -7,8 +7,6 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class CEMApp {
 
@@ -64,8 +62,6 @@ public class CEMApp {
                     System.out.println("Unsuccessful login: Incorrect password");
                 } else if (loginResult == 2) {
                     System.out.println("Unsuccessful login: User ID doesn't exist");
-                } else {
-                    System.out.println("Unsuccessful login: Unknown reason");
                 }
             } else {
                 System.out.println("Invalid option");
@@ -347,6 +343,7 @@ public class CEMApp {
         }
     }
     
+    //returns array of file names in a directory because such function isnt built-in java
     public static List<String> getFileNames (String dir) {
         File[] files = new File(dir).listFiles();
         String[] arr = new String[files.length];

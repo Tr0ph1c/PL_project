@@ -48,13 +48,11 @@ public class Admin extends User {
         String password = student.getPassword();
         
         String[] lines = {sName, ""+sAge, password, " "};
-//        for (String course : courses) {
-//            line[3] += course + ";";
-//        }
+        
         boolean added = Database.writeRecord(Database.TABLE_STUDS,""+student_id, lines);
         
         if (added) {
-            File file = new File(Database.TABLE_STUDS+""+student_id+"tests/");
+            File file = new File(Database.TABLE_STUDS+student_id+"tests/");
             file.mkdirs();
             System.out.println("Student added successfully.");
         } else {
@@ -120,12 +118,10 @@ public class Admin extends User {
         String[] lines ;
         switch (type) {
             case STUDENT:
-                
-                
-                try{
+                try {
                     lines = Database.getlines(Database.TABLE_STUDS + user_id);
                 }
-                catch(IOException e){
+                catch (IOException e){
                     System.out.println("Student ID does not exist");
                     return;
                 }
@@ -137,12 +133,10 @@ public class Admin extends User {
 
                 lines[3] += ";" + course;
                 Database.overwriteRecord(Database.TABLE_STUDS , user_id, lines);
-                
-                System.out.println("NON valid ID");
                 break;
             case LECTURER:
-                try{
-                lines = Database.getlines(Database.TABLE_LECTS + user_id);
+                try {
+                    lines = Database.getlines(Database.TABLE_LECTS + user_id);
                 }
                 catch(IOException e)
                 {

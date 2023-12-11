@@ -11,7 +11,7 @@ import DirectoryBasedDB.Database;
 public class Student extends User{
     public static int ID;
     
-    private String[] Courses ;
+    private String[] Courses;
 
     public Student(int _id, String name, int age, String password, String[] courses) {
         super(_id, name, age, password, UserManagement.UserType.STUDENT);
