@@ -30,18 +30,12 @@ public class Database {
     * Returns:
     *   An array containing lines read from the specified file.
     */
-    public static String[] getlines(String path ){
+    public static String[] getlines (String path) throws IOException {
         String[] linesArray  = new String[0];
-        try {
-            
-            List<String> lines = Files.readAllLines(Paths.get(path));
-
-            linesArray = lines.toArray(new String[0]);
-            return linesArray ;
-
-        } catch (IOException e) {
-            e.printStackTrace(); 
-        }
+        
+        List<String> lines = Files.readAllLines(Paths.get(path));
+        linesArray = lines.toArray(new String[0]);
+        
         return linesArray;
     }
     
