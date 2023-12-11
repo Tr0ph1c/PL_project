@@ -1,6 +1,7 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
+import java.io.IOException;
 
 import java.util.Scanner;
 
@@ -76,12 +77,16 @@ public class Lecturer extends User {
     
     public void DeleteTest(String test_id)
     {
-        if (!Database.getlines(Database.TABLE_EXAMS+test_id)[0].equals(course)) {
-            System.out.println("Can't delete test outside of lecturer's scope!");
-        } else if (Database.delRecord(Database.TABLE_EXAMS , test_id)) {
-            System.out.println("Test " + test_id + " deleted successfully.");
-        } else {
-            System.out.println("Test " + test_id + " does not exist.");
+        try {
+            if (!Database.getlines(Database.TABLE_EXAMS+test_id)[0].equals(course)) {
+                System.out.println("Can't delete test outside of lecturer's scope!");
+            } else if (Database.delRecord(Database.TABLE_EXAMS , test_id)) {
+                System.out.println("Test " + test_id + " deleted successfully.");
+            } else {
+                System.out.println("Test " + test_id + " does not exist.");
+            }   
+        } catch (IOException e) {
+            System.out.println("Unable to delete test, test_id doesnt exist");
         }
     }
     

@@ -3,9 +3,12 @@ package cemsystemjava;
 import DirectoryBasedDB.Database;
 import java.io.File;
 import cemsystemjava.UserManagement.UserType;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CEMApp {
 
@@ -122,10 +125,14 @@ public class CEMApp {
             File[] files = new File(dir).listFiles();
 
             for (File file : files) {
-                String fileName = file.toPath().getFileName().toString();
-                if (fileName.equals("ID") || takenTests.contains(fileName)) continue;
-                String[] lines = Database.getlines(dir+fileName);
-                System.out.println(fileName + "\t" + lines[0] + "\t" + (lines.length - 1));
+                try {
+                    String fileName = file.toPath().getFileName().toString();
+                    if (fileName.equals("ID") || takenTests.contains(fileName)) continue;                  
+                    String[] lines = Database.getlines(dir+fileName);
+                    System.out.println(fileName + "\t" + lines[0] + "\t" + (lines.length - 1));
+                } catch (IOException ex) {
+                    continue;
+                }
             }
             
             System.out.println("--------\nTAKETEST {test id}\nEXIT");
@@ -157,9 +164,13 @@ public class CEMApp {
             File[] files = new File(dir).listFiles();
 
             for (File file : files) {
-                String fileName = file.toPath().getFileName().toString();
-                String[] lines = Database.getlines(dir+fileName);
-                System.out.println(fileName + "\t" + lines[0] + "\t" + lines[1]);
+                try {
+                    String fileName = file.toPath().getFileName().toString();
+                    String[] lines = Database.getlines(dir+fileName);
+                    System.out.println(fileName + "\t" + lines[0] + "\t" + lines[1]);
+                } catch (IOException e) {
+                    continue;
+                }
             }
             
             System.out.println("--------\ntype 'EXIT' to leave this page");
@@ -205,10 +216,14 @@ public class CEMApp {
             
             System.out.println("ID" + "\t" + "Course" + "\t" + "No. of Questions");
             for (File file : files) {
-                String fileName = file.toPath().getFileName().toString();
-                if (fileName.equals("ID")) continue;
-                String[] lines = Database.getlines(dir+fileName);
-                System.out.println(fileName + "\t" + lines[0] + "\t" + (lines.length - 1));
+                try {
+                    String fileName = file.toPath().getFileName().toString();
+                    if (fileName.equals("ID")) continue;
+                    String[] lines = Database.getlines(dir+fileName);
+                    System.out.println(fileName + "\t" + lines[0] + "\t" + (lines.length - 1));
+                } catch (IOException e) {
+                    continue;
+                }
             }
             
             System.out.println("--------\nDELTEST {test id}\nSHOWMARKS {test id}\nEXIT");
@@ -246,9 +261,13 @@ public class CEMApp {
                 
                 for (File test : doneTests) {
                     if (test.getName().equals(test_id)) {
-                        String stu_id = file.getName().replace("tests", "");
-                        String mark = Database.getlines(Database.TABLE_STUDS+file.getName()+"/"+test.getName())[1];
-                        System.out.println(stu_id + "\t" + mark);
+                        try {
+                            String stu_id = file.getName().replace("tests", "");
+                            String mark = Database.getlines(Database.TABLE_STUDS+file.getName()+"/"+test.getName())[1];
+                            System.out.println(stu_id + "\t" + mark);
+                        } catch (IOException e) {
+                            continue;
+                        }
                     }
                 }
             }
@@ -285,12 +304,16 @@ public class CEMApp {
             
             System.out.println("ID" + "\t" + "Name" + "\t" + "Age" + "\t" + "Courses");
             for (File file : files) {
-                String fileName = file.toPath().getFileName().toString();
-                if (file.isDirectory() || fileName.equals("ID")) continue;
-                String[] lines = Database.getlines(dir+fileName);
-                String courses = "..";
-                if (lines.length >= 4) courses = lines[3];
-                System.out.println(fileName + "\t" + lines[0] + "\t" + lines[1] + "\t" + courses);
+                try {
+                    String fileName = file.toPath().getFileName().toString();
+                    if (file.isDirectory() || fileName.equals("ID")) continue;
+                    String[] lines = Database.getlines(dir+fileName);
+                    String courses = "..";
+                    if (lines.length >= 4) courses = lines[3];
+                    System.out.println(fileName + "\t" + lines[0] + "\t" + lines[1] + "\t" + courses);
+                } catch (IOException e) {
+                    continue;
+                }
             }
             
             System.out.println("--------\nADDUSER {username} {age} {password}\nDELUSER {user id}\nASSIGN {course name} {lect/stud id}\nEXIT");
@@ -334,14 +357,18 @@ public class CEMApp {
     }
     
     private static void LoadIDs () {
-        String stuID = Database.getlines(Database.TABLE_STUDS+"ID")[0];
-        String lectID = Database.getlines(Database.TABLE_LECTS+"ID")[0];
-        String admID = Database.getlines(Database.TABLE_ADMIN+"ID")[0];
-        String tstID = Database.getlines(Database.TABLE_EXAMS+"ID")[0];
-        
-        Student.ID = Integer.parseInt(stuID);
-        Lecturer.ID = Integer.parseInt(lectID);
-        Admin.ID = Integer.parseInt(admID);
-        Test.ID = Integer.parseInt(tstID);
+        try {
+            String stuID = Database.getlines(Database.TABLE_STUDS+"ID")[0];
+            String lectID = Database.getlines(Database.TABLE_LECTS+"ID")[0];
+            String admID = Database.getlines(Database.TABLE_ADMIN+"ID")[0];
+            String tstID = Database.getlines(Database.TABLE_EXAMS+"ID")[0];
+
+            Student.ID = Integer.parseInt(stuID);
+            Lecturer.ID = Integer.parseInt(lectID);
+            Admin.ID = Integer.parseInt(admID);
+            Test.ID = Integer.parseInt(tstID);
+        } catch (IOException e) {
+            System.out.println("ID files for auto increment dont exist.");
+        }
     }
 }

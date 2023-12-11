@@ -1,6 +1,7 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -18,14 +19,18 @@ public class Test {
     public String course;
     
     public void loadTest(String test_id) {
-        String[] info = Database.getlines(Database.TABLE_EXAMS+test_id);
-        this.test_ID = Integer.parseInt(test_id);
-        this.total = info.length-1;
-        this.course = info[0];
-        this.questions = new Question[total];
-        
-        for(int i = 0 ; i < total; i++) {
-            questions[i] = new Question(info[i+1]);
+        try {
+            String[] info = Database.getlines(Database.TABLE_EXAMS+test_id);
+            this.test_ID = Integer.parseInt(test_id);
+            this.total = info.length-1;
+            this.course = info[0];
+            this.questions = new Question[total];
+
+            for(int i = 0 ; i < total; i++) {
+                questions[i] = new Question(info[i+1]);
+            }
+        } catch (IOException e) {
+            System.out.println("Unable to load test " + test_id + ". It doesnt exist.");
         }
     }
     
