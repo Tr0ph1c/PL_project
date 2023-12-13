@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class Database {
-    public static final String DB = "../database/";
+    private static final String DB = "../database/";
     public static final String TABLE_ADMIN = DB + "administrators/";
     public static final String TABLE_COURSES = DB + "courses/";
     public static final String TABLE_EXAMS = DB + "exams/";
@@ -58,13 +58,6 @@ public class Database {
     public static boolean writeRecord (String path, String RecordID, String[] lines) {
           if(!recordExists(path,RecordID)) {overwriteRecord(path,RecordID,lines);return true;}
           else {return false;}
-    }
-
-    public static boolean delRecord (String path , String id)
-    {
-        File record = new File(path+id);
-        return record.delete();
-
     }
 
     public static boolean removeRecord (String path, String RecordID) {

@@ -25,7 +25,7 @@ public class Lecturer extends User {
         return course;
     }
     
-    public boolean CreateTest()
+    public void CreateTest()
     {   
         Scanner input = new Scanner(System.in);
 
@@ -72,7 +72,7 @@ public class Lecturer extends User {
             Lines[i+1] = question.toString();
         }
         
-        return Database.writeRecord(Database.TABLE_EXAMS, Integer.toString(Test.generateID()), Lines);
+        Database.writeRecord(Database.TABLE_EXAMS, Integer.toString(Test.generateID()), Lines);
     }
     
     public void DeleteTest(String test_id)
@@ -80,7 +80,7 @@ public class Lecturer extends User {
         try {
             if (!Database.getlines(Database.TABLE_EXAMS+test_id)[0].equals(course)) {
                 System.out.println("Can't delete test outside of lecturer's scope!");
-            } else if (Database.delRecord(Database.TABLE_EXAMS , test_id)) {
+            } else if (Database.removeRecord(Database.TABLE_EXAMS , test_id)) {
                 System.out.println("Test " + test_id + " deleted successfully.");
             } else {
                 System.out.println("Test " + test_id + " does not exist.");

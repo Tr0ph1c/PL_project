@@ -1,6 +1,7 @@
 package cemsystemjava;
 
 import DirectoryBasedDB.Database;
+import Utils.Helper;
 
 /**
  *
@@ -23,7 +24,7 @@ public class Student extends User{
     }
     
     public void TakeTest(String test_id) {
-        if (CEMApp.getFileNames(Database.TABLE_STUDS+super.getID()+"tests").contains(test_id)) {
+        if (Helper.getFileNames(Database.TABLE_STUDS+super.getID()+"tests").contains(test_id)) {
             System.out.println("Cant take a test that you already did.");
             return;
         }

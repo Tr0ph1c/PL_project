@@ -7,11 +7,12 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import Utils.Helper;
 
 public class CEMApp {
 
     public static void main(String[] args) {
-        LoadIDs();
+        Helper.LoadIDs();
         CourseManager.LoadCourses();
         
         Scanner scanner = new Scanner(System.in);
@@ -115,7 +116,7 @@ public class CEMApp {
         String dir = Database.TABLE_EXAMS;
         
         while (true) {
-            List<String> takenTests = getFileNames(Database.TABLE_STUDS+u.getID()+"tests");
+            List<String> takenTests = Helper.getFileNames(Database.TABLE_STUDS+u.getID()+"tests");
             
             System.out.println("ID" + "\t" + "Course" + "\t" + "No. of Questions");
             File[] files = new File(dir).listFiles();
@@ -238,7 +239,7 @@ public class CEMApp {
                     System.out.println("Inappropriate number of arguemnts");
                     continue;
                 }
-                showMarks(inp[1]);
+                ShowMarks(inp[1]);
             } else if ("exit".equals(cmd.toLowerCase())) {
                 return;
             } else {
@@ -247,7 +248,7 @@ public class CEMApp {
         }
     }
     
-    private static void showMarks (String test_id) {
+    private static void ShowMarks (String test_id) {
         System.out.println("Displaying student marks on test: " + test_id);
         System.out.println("TestID\tMark");
         File[] files = new File(Database.TABLE_STUDS).listFiles();
@@ -283,14 +284,15 @@ public class CEMApp {
             switch (choice) {
                 case '0' -> { return; } //logs out by returning from function to main loop
                 case '1' -> UserManagement.ChangeInfo();
-                case '2' -> FetchUsers(UserType.STUDENT, u);
-                case '3' -> FetchUsers(UserType.LECTURER, u);
+                case '2' -> FetchUsers(UserType.STUDENT);
+                case '3' -> FetchUsers(UserType.LECTURER);
                 default  -> System.out.println("Invalid choice, please try again.");
             }
         }
     }
     
-    private static void FetchUsers (UserType type, Admin u) {
+    private static void FetchUsers (UserType type) {
+        Admin u = (Admin)UserManagement.currentUser;
         Scanner scanner = new Scanner(System.in);
         String[] inp;
         String dir = (type==UserType.STUDENT)? Database.TABLE_STUDS:Database.TABLE_LECTS;
@@ -340,32 +342,6 @@ public class CEMApp {
             } else {
                 System.out.println("Invalid command");
             }
-        }
-    }
-    
-    //returns array of file names in a directory because such function isnt built-in java
-    public static List<String> getFileNames (String dir) {
-        File[] files = new File(dir).listFiles();
-        String[] arr = new String[files.length];
-        for (int i = 0; i < files.length; ++i) {
-            arr[i] = files[i].getName();
-        }
-        return Arrays.asList(arr);
-    }
-    
-    private static void LoadIDs () {
-        try {
-            String stuID = Database.getlines(Database.TABLE_STUDS+"ID")[0];
-            String lectID = Database.getlines(Database.TABLE_LECTS+"ID")[0];
-            String admID = Database.getlines(Database.TABLE_ADMIN+"ID")[0];
-            String tstID = Database.getlines(Database.TABLE_EXAMS+"ID")[0];
-
-            Student.ID = Integer.parseInt(stuID);
-            Lecturer.ID = Integer.parseInt(lectID);
-            Admin.ID = Integer.parseInt(admID);
-            Test.ID = Integer.parseInt(tstID);
-        } catch (IOException e) {
-            System.out.println("ID files for auto increment dont exist.");
         }
     }
 }
