@@ -40,7 +40,7 @@ public class Admin extends User {
         }
     }
     
-    public void AddStudent(Student student)
+    private void AddStudent(Student student)
     {
         int student_id = student.generateID();
         String sName = student.getName();
@@ -60,7 +60,7 @@ public class Admin extends User {
         }
     }
     
-    public void AddLecturer(Lecturer lecturer)
+    private void AddLecturer(Lecturer lecturer)
     {
         int lecturer_id = lecturer.generateID();
         String LName = lecturer.getName();
@@ -83,7 +83,7 @@ public class Admin extends User {
         }
     }
     
-    public void DeleteStudent(String ID)
+    private void DeleteStudent(String ID)
     {
         //Delete the whole directory with everything inside it
         try (Stream<Path> pathStream = Files.walk(new File(Database.TABLE_STUDS,ID+"tests").toPath())) {
@@ -101,11 +101,11 @@ public class Admin extends User {
         }
     }
     
-    public void DeleteLecturer(String lecturer_id)
+    private void DeleteLecturer(String lecturer_id)
     {
         String lecturerPath = Database.TABLE_LECTS;
 
-        boolean deleted = Database.delRecord(lecturerPath, lecturer_id);
+        boolean deleted = Database.removeRecord(lecturerPath, lecturer_id);
         if (deleted) {
             System.out.println("Lecturer with ID {" + lecturer_id + "} deleted successfully.");
         } else {
