@@ -91,7 +91,8 @@ public class Admin extends User {
               .map(Path::toFile)
               .forEach(File::delete);
         } catch (IOException ex) {
-            ex.printStackTrace();
+//            ex.printStackTrace();1
+
         }
         
         if (Database.removeRecord(Database.TABLE_STUDS, ID)) {
