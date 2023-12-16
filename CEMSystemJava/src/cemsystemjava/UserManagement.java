@@ -83,7 +83,18 @@ public abstract class UserManagement {
             System.out.println("3. Change Password");
             System.out.println("4. Exit");
 
-            int choice = scanner.nextInt();
+            int choice ;
+            while(true){
+                try{
+                    choice = scanner.nextInt();
+                    break;
+                }
+                catch(Exception ex)
+                {
+                    scanner.nextLine();
+                    System.out.println("Only numeric values allowed!\nPlease Enter your choice : ");
+                }
+            }
             scanner.nextLine();
             String newValue = "";
                 switch (choice) {
@@ -93,9 +104,20 @@ public abstract class UserManagement {
                         currentUser.setName(newValue);
                         break;
                     case 2:
-                        System.out.println("Enter your new age:");
-                        newValue = scanner.next();
-                        currentUser.setAge(Integer.parseInt(newValue));
+                        while(true){
+                            try
+                            {
+                                System.out.println("Enter your new age:");
+                                newValue = scanner.next();
+                                currentUser.setAge(Integer.parseInt(newValue));
+                                break;
+                            }
+                            catch(Exception ex)
+                            {
+                                scanner.nextLine();
+                                System.out.println("Only numeric values allowed!");
+                            }
+                        }
                         break;
                     case 3:
                         System.out.println("Enter your new password:");

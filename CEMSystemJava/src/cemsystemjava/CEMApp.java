@@ -17,16 +17,28 @@ public class CEMApp {
         CourseManager.LoadCourses();
         
         Scanner scanner = new Scanner(System.in);
-        int choice;
+        int choice ;
 
         while (true) {
             System.out.println("Main Menu");
             System.out.println("0- Exit");
             System.out.println("1- Login");
-            System.out.print("Enter your choice: ");
+            
 
-            choice = scanner.nextInt();
-            scanner.nextLine(); // Consume the newline character
+            while(true)
+            {
+                try{
+                    System.out.print("Enter your choice: ");
+                    choice = scanner.nextInt();
+                    scanner.nextLine(); // Consume the newline character
+                    break;
+                }
+                catch(Exception e)
+                {
+                    scanner.nextLine();
+                    System.out.println("Only numeric values allowed!");
+                }
+            }
 
             if (choice == 0) {
                 System.out.println("Exiting the program...");
@@ -46,6 +58,7 @@ public class CEMApp {
                         break;
                     }
                 catch(Exception e){
+                        scanner.nextLine();
                         System.out.println("Only numbers allowed");
                     }
                 }
