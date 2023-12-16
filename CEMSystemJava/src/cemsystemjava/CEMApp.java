@@ -314,7 +314,7 @@ public class CEMApp {
                 }
             }
             
-            System.out.println("--------\nADDUSER {username} {age} {password}\nDELUSER {user id}\nASSIGN {course name} {lect/stud id}\nEXIT");
+            System.out.println("--------\nADDUSER {username} {age} {password}\nDELUSER {user id}\nASSIGN {lect/stud id} {course name}\nEXIT");
             
             inp = scanner.nextLine().split(" ");
             String cmd = inp[0];
