@@ -84,20 +84,21 @@ public class Admin extends User {
     }
     
     private void DeleteStudent(String ID)
-    {
+    {    
+        if (Database.removeRecord(Database.TABLE_STUDS, ID)) {
+            System.out.println("Student with ID {" + ID + "} deleted successfully.");
+        } else {
+            System.out.println("Student with ID {" + ID + "} does not exist.");
+            return;
+        }
+        
         //Delete the whole directory with everything inside it
         try (Stream<Path> pathStream = Files.walk(new File(Database.TABLE_STUDS,ID+"tests").toPath())) {
             pathStream.sorted(Comparator.reverseOrder())
               .map(Path::toFile)
               .forEach(File::delete);
         } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
-        if (Database.removeRecord(Database.TABLE_STUDS, ID)) {
-            System.out.println("Student with ID {" + ID + "} deleted successfully.");
-        } else {
-            System.out.println("Student with ID {" + ID + "} does not exist.");
+            System.out.println("dir of student's folder already deleted.");
         }
     }
     
