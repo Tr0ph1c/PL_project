@@ -37,9 +37,19 @@ public class CEMApp {
                 System.out.println("1 - Admin");
                 System.out.println("2 - Student");
                 System.out.println("3 - Lecturer");
-                System.out.print("Enter your choice: ");
-                choice = scanner.nextInt();
-                scanner.nextLine(); // Consume the newline character
+                while(true){
+                    try
+                    {
+                        System.out.print("Enter your choice: ");
+                        choice = scanner.nextInt();
+                        scanner.nextLine(); // Consume the newline character
+                        break;
+                    }
+                catch(Exception e){
+                        System.out.println("Only numbers allowed");
+                    }
+                }
+                
                 switch (choice) {
                     case 1 -> type = UserType.ADMINISTRATOR;
                     case 2 -> type = UserType.STUDENT;
