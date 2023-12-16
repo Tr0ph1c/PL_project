@@ -2,6 +2,7 @@ package cemsystemjava;
 
 import DirectoryBasedDB.Database;
 import Utils.Helper;
+import java.util.Arrays;
 
 /**
  *
@@ -25,11 +26,15 @@ public class Student extends User{
     
     public void TakeTest(String test_id) {
         if (Helper.getFileNames(Database.TABLE_STUDS+super.getID()+"tests").contains(test_id)) {
-            System.out.println("Cant take a test that you already did.");
+            System.out.println("Can't take a test that you already did.");
             return;
         }
         Test test = new Test();
-        test.loadTest(test_id);
+        if (!test.loadTest(test_id)) {return;}
+        if (!Arrays.asList(Courses).contains(test.course)) {
+            System.out.println("Can't take a test that isn't in your assigned courses.");
+            return;
+        }
         int mark = test.take_test();
         String[] ReportLines = {test.course, mark + "/" + test.total};
         Database.overwriteRecord(Database.TABLE_STUDS+super.getID()+"tests/", test_id, ReportLines);

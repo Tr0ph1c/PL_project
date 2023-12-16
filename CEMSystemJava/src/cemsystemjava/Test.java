@@ -18,7 +18,7 @@ public class Test {
     public int total;
     public String course;
     
-    public void loadTest(String test_id) {
+    public boolean loadTest(String test_id) {
         try {
             String[] info = Database.getlines(Database.TABLE_EXAMS+test_id);
             this.test_ID = Integer.parseInt(test_id);
@@ -31,7 +31,10 @@ public class Test {
             }
         } catch (IOException e) {
             System.out.println("Unable to load test " + test_id + ". It doesnt exist.");
+            return false;
         }
+        
+        return true;
     }
     
     /*

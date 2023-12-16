@@ -16,13 +16,6 @@ public class User {
         this.type = type;
     }
     
-    public User(int id, String name, int age, String password) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.password = password;
-    }
-    
     public int getID() {
         return id;
     }

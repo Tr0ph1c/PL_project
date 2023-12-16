@@ -47,7 +47,7 @@ public class Admin extends User {
         int sAge = student.getAge();
         String password = student.getPassword();
         
-        String[] lines = {sName, ""+sAge, password, " "};
+        String[] lines = {sName, ""+sAge, password, "\n"};
         
         boolean added = Database.writeRecord(Database.TABLE_STUDS,""+student_id, lines);
         
@@ -113,7 +113,7 @@ public class Admin extends User {
         }
     }
     
-    public void AssignCourse (String course, String user_id, UserType type) {
+    public void AssignCourse (String user_id, String course, UserType type) {
         if (!CourseManager.Exists(course)) CourseManager.AddCourse(course);
         String[] lines ;
         switch (type) {
