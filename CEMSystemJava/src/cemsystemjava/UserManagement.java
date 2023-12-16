@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Scanner;
 
-public final class UserManagement {
+public abstract class UserManagement {
     public static enum UserType {
         STUDENT,
         LECTURER,

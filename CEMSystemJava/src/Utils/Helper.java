@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
-public class Helper {
+public abstract class Helper {
     public static void LoadIDs () {
         try {
             String stuID = Database.getlines(Database.TABLE_STUDS+"ID")[0];

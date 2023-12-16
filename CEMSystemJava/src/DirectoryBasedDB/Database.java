@@ -7,7 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class Database {
+public abstract class Database {
     private static final String DB = "../database/";
     public static final String TABLE_ADMIN = DB + "administrators/";
     public static final String TABLE_COURSES = DB + "courses/";
