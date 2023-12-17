@@ -55,6 +55,18 @@ public abstract class Database {
         }
     }
     
+    public static void appendtoRecord (String path, String RecordID, String[] lines) throws IOException {
+        String[] oldLines = getlines(path+RecordID);
+        String[] allLines = new String[oldLines.length + lines.length];
+        for (int i = 0; i < oldLines.length; ++i) {
+            allLines[i] = oldLines[i];
+        }
+        for (int i = 0; i < lines.length; ++i) {
+            allLines[i+oldLines.length] = lines[i];
+        }
+        overwriteRecord(path, RecordID, allLines);
+    }
+    
     public static boolean writeRecord (String path, String RecordID, String[] lines) {
           if(!recordExists(path,RecordID)) {overwriteRecord(path,RecordID,lines);return true;}
           else {return false;}

@@ -62,15 +62,14 @@ public class Test {
             System.out.println();
             System.out.print("Please choose (a,b,c,d): ");
             
-            char ans = input.nextLine().toLowerCase().charAt(0);
             while(true){
-                if(Character.isLetter(ans)){
+                char ans = input.nextLine().toLowerCase().charAt(0);
+                if(ans >= 'a' && ans <= 'd'){
                     mark += (questions[i].answer(ans))? 1 : 0;
                     break;
                 }
                 else{
                     System.out.print("Please choose (a,b,c,d): ");
-                    ans = input.nextLine().toLowerCase().charAt(0);
                 }
             }
             //mark += (q.answer(ans))? 1 : 0;

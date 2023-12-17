@@ -30,7 +30,6 @@ public class CEMApp {
                 try{
                     System.out.print("Enter your choice: ");
                     choice = scanner.nextInt();
-                    scanner.nextLine(); // Consume the newline character
                     break;
                 }
                 catch(Exception e)

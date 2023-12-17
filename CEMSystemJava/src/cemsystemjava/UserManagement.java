@@ -71,7 +71,7 @@ public abstract class UserManagement {
             return 2;
         }
     }
-    @SuppressWarnings("empty-statement")
+    
     public static void ChangeInfo() {
         UserType type = currentUser.getType();
         
