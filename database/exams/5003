@@ -1,6 +1,0 @@
-cs101
-choose the best programming language;haskell;javascript;java;OCaml;3
-how to instantiate an object from a class;instantiate(class);create(class);class.new();new class;4
-how many elements can you store in an ArrayList;you have to define;9999;powers of 2;no limit;4
-how does cpp handle allocated space in the memory with no pointers;garbage collection;assigns a pointer to it;stores it in the heap;removes it from the stack;1
-the name of the most popular paradigm in programming;functional;object oriented;procedural;none of the above;2
